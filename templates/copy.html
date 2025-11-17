@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Clipboard Transfer</title>
+</head>
+<body style="font-family: Arial; padding: 30px;">
+
+    <h2>Clipboard Data</h2>
+
+    <textarea id="content" style="width: 100%; height: 120px;">{{ clipboard_data }}</textarea>
+    <br><br>
+
+    <button onclick="copyText()" style="padding: 10px 20px;">
+        Copy to Clipboard
+    </button>
+
+    <script>
+        function copyText() {
+            const textBox = document.getElementById("content");
+            textBox.select();
+            textBox.setSelectionRange(0, 99999); // Mobile support
+            navigator.clipboard.writeText(textBox.value)
+                .then(() => alert("Copied to your clipboard!"))
+                .catch(() => alert("Failed to copy"));
+        }
+    </script>
+
+</body>
+</html>
